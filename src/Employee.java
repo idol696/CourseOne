@@ -78,7 +78,6 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        System.out.println(id);
         return Objects.hash(id, department, firstName, lastName, additiveName, monthSalary);
     }
 }
