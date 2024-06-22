@@ -1,41 +1,28 @@
 public class Main {
     public static void main(String[] args) {
 
-        String[][] workerName = {
-                {"Бабушкин", "Илья", "Андреевич"},
-                {"Мусинькин", "Игорь", "Петрович"},
-                {"Хазбулатов", "Виталий", "Насреддинов"},
-                {"Познер", "Иван", "Иванович"},
-                {"Волондемортов", "Исаакий", "Лепреконович"},
-                {"Дудина", "Ирина", "Игорьевна"},
-                {"Смактуновский", "Иннокентий", "Павлович"},
-                {"Бузинова", "Наталья", "Натальевна"},
-                {"Навеяло", "Навелий", "Навельевич"},
-                {"Прошкина", "Прасковья", "Пелевьевна"}
-        };
-        int[] workerDepartment = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
-        double[] workerSalary = {10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000};
         Employee[] worker = new Employee[10];
-        for (int i = 0; i < 10; i++) {
-            worker[i] = new Employee();
-            worker[i].setId(i + 1);
-            worker[i].setFirstName(workerName[i][1]);
-            worker[i].setLastName(workerName[i][0]);
-            worker[i].setAdditiveName(workerName[i][2]);
-            worker[i].setDepartment(workerDepartment[i]);
-            worker[i].setMonthSalary(workerSalary[i]);
-        }
+        worker[0] = new Employee("Бабушкин", "Илья", "Андреевич",10_000,1);
+        worker[1] = new Employee("Мусинькин", "Игорь", "Петрович",20_000,2);
+        worker[2] = new Employee("Хазбулатов", "Виталий", "Насреддинов",30_000,3);
+        worker[3] = new Employee("Познер", "Иван", "Иванович",40_000,4);
+        worker[4] = new Employee("Волондемортов", "Исаакий", "Лепреконович",50_000,5);
+        worker[5] = new Employee("Дудина", "Ирина", "Игорьевна",60_000,2);
+        worker[6] = new Employee("Смактуновский", "Иннокентий", "Павлович",70_000,3);
+        worker[7] = new Employee("Бузинова", "Наталья", "Натальевна",80_000,2);
+        worker[8] = new Employee("Навеяло", "Навелий", "Навельевич",90_000,5);
+        worker[9] = new Employee("Прошкина", "Прасковья", "Пелевьевна",100_000,4);
 
         System.out.println("First Record ID:"+worker[0].getId());
         System.out.println("First Record Department:"+worker[0].getDepartment());
         System.out.println("Вывод всех полей");
         for (Employee employee : worker) {
-            printEmployeeRow(employee);
+            printEmployee(employee);
         }
 
         System.out.println("Вывод ФИО");
         for (Employee employee : worker) {
-            printEmployeeFullNameRow(employee);
+            printEmployeeFullName(employee);
         }
         System.out.println("Average = " + salaryAverage(worker));
         System.out.println("Min = " + salaryMin(worker));
@@ -43,21 +30,22 @@ public class Main {
         System.out.println("Sum = " + salarySum(worker));
     }
 
-    public static void printEmployeeRow(Employee employee) {
-        System.out.println(employee.toString());
+    public static void printEmployee(Employee employee) {
+        System.out.println(employee);
     }
 
-    public static void printEmployeeFullNameRow(Employee employee) {
+    public static void printEmployeeFullName(Employee employee) {
         System.out.println(employee.getLastName() + " " + employee.getFirstName() + " " + employee.getAdditiveName());
     }
 
     public static double salaryAverage(Employee[] worker) {
         double salaryAverage = 0;
-        int i = 0;
-        for (; i < worker.length; i++) {
-            salaryAverage += worker[i].getMonthSalary();
+        int count = 0;
+        for (Employee employee : worker) {
+            salaryAverage += employee.getMonthSalary();
+            count++;
         }
-        return salaryAverage / i;
+        return salaryAverage / count;
     }
 
     public static double salaryMax(Employee[] worker) {

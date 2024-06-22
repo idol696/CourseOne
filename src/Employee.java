@@ -7,9 +7,23 @@ public class Employee {
     private String lastName;
     private String additiveName;
     private double monthSalary;
+    private static int idCounter;
 
-    public void setId(int id) {
-        this.id = id;
+    public Employee() {
+        setId();
+    }
+
+    public Employee(String firstName, String lastName, String additiveName, double monthSalary, int department) {
+        setId();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.additiveName = additiveName;
+        this.monthSalary = monthSalary;
+        this.department = department;
+    }
+
+    private void setId() {
+        this.id = ++idCounter;
     }
 
     public void setFirstName(String firstName) {
